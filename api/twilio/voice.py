@@ -31,7 +31,7 @@ async def handle_incoming_call(request: Request):
     response.append(connect)
     return HTMLResponse(content=str(response), media_type="application/xml")
 
-@router.websocket("/api/twilio/media-stream")
+@router.websocket("/media-stream")
 async def handle_media_stream(websocket: WebSocket):
     """
     Handles the WebSocket connection for audio streaming:
@@ -78,4 +78,4 @@ async def handle_media_stream(websocket: WebSocket):
             print("Conversation session ended")
         except Exception:
             print("Error ending conversation session:")
-            traceback.print_exc()
+            traceback.print_exc() 
