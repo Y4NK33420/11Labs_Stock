@@ -4,7 +4,7 @@ import os
 
 router = APIRouter()
 
-@router.get("")
+@router.get("/api/search")
 async def search_news(
     query: str = Query(..., description="The search query"),
     num_results: int = Query(5, description="Number of results to return", ge=1, le=10)
@@ -33,4 +33,4 @@ async def search_news(
             return {"results": [], "message": "No results found"}
             
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to perform search: {str(e)}") 
+        raise HTTPException(status_code=500, detail=f"Failed to perform search: {str(e)}")

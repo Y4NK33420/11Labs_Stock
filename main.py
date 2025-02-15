@@ -18,7 +18,7 @@ app.add_middleware(
 # Include routers
 app.include_router(stock_router)
 app.include_router(twilio_router)
-app.include_router(search_router)
+app.include_router(search_router)  # No prefix needed here
 
 @app.get("/")
 async def root():
@@ -30,6 +30,6 @@ async def root():
             "stock_history": "/api/stock/history",
             "market_summary": "/api/stock/market-summary",
             "twilio_webhook": "/api/twilio/inbound_call",
-            "search": "/api/search"
+            "search": "/api/search"  # Updated endpoint
         }
-    } 
+    }
