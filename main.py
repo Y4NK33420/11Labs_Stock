@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from api.stock import router as stock_router
+from api.twilio import router as twilio_router
 
 app = FastAPI(title="Stock Market API")
 
@@ -15,6 +16,7 @@ app.add_middleware(
 
 # Include routers
 app.include_router(stock_router)
+app.include_router(twilio_router)
 
 @app.get("/")
 async def root():
@@ -24,6 +26,7 @@ async def root():
         "endpoints": {
             "stock_price": "/api/stock/price",
             "stock_history": "/api/stock/history",
-            "market_summary": "/api/stock/market-summary"
+            "market_summary": "/api/stock/market-summary",
+            "twilio_webhook": "/api/twilio/inbound_call"
         }
     } 
