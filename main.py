@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from api.stock import router as stock_router
-from api.twilio import router as twilio_router  # This comes from api/twilio/voice.py
-from api.search import router as search_router
+from api.twilio import router as twilio_router  # Already has prefix "/api/twilio"
+from api.search import router as search_router    # Already has prefix "/api/search"
 
 app = FastAPI(title="Stock Market API")
 
@@ -15,10 +15,10 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
-# Include routers with appropriate prefixes
+# Include routers without adding duplicate prefixes
 app.include_router(stock_router)
-app.include_router(twilio_router, prefix="/api/twilio")  # Added prefix to correctly map endpoints
-app.include_router(search_router)
+app.include_router(twilio_router)  # Routes: /api/twilio/inbound_call and /media-stream as defined in voice.py
+app.include_router(search_router)  # Route: /api/search
 
 @app.get("/")
 async def root():
