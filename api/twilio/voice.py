@@ -27,7 +27,7 @@ async def handle_incoming_call(request: Request):
     response = VoiceResponse()
     connect = Connect()
     # Connect the call's audio stream to our WebSocket endpoint
-    connect.stream(url=f"wss://{request.url.hostname}/media-stream")
+    connect.stream(url=f"wss://{request.url.hostname}/api/twilio/media-stream")
     response.append(connect)
     return HTMLResponse(content=str(response), media_type="application/xml")
 
