@@ -5,7 +5,6 @@ from api.search import router as search_router
 
 app = FastAPI(title="Stock Market API")
 
-# Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -14,9 +13,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include routers
-app.include_router(stock_router)
-app.include_router(search_router)  # Route: /api/search
+# Include routers with single prefix definition
+app.include_router(stock_router, prefix="/api/stock")
+app.include_router(search_router, prefix="/api")
 
 @app.get("/")
 async def root():
@@ -24,10 +23,10 @@ async def root():
         "message": "Stock Market API is running",
         "docs_url": "/docs",
         "endpoints": {
-            "stock_price": "/api/stock/price",
-            "stock_history": "/api/stock/history",
+            "price": "/api/stock/price",
+            "history": "/api/stock/history",
             "market_summary": "/api/stock/market-summary",
-            "stock_news": "/api/stock/vantage/news",
+            "news": "/api/stock/vantage/news",
             "market_movers": "/api/stock/vantage/market-movers",
             "search": "/api/search"
         }

@@ -4,7 +4,7 @@ import os
 
 router = APIRouter()
 
-@router.get("/api/search")
+@router.get("")
 async def search_news(
     query: str = Query(..., description="The search query"),
     num_results: int = Query(5, description="Number of results to return", ge=1, le=10)
