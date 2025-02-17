@@ -9,7 +9,7 @@ ALPHA_VANTAGE_API_KEY = os.getenv("ALPHA_VANTAGE_API_KEY")
 async def get_stock_news(
     tickers: str = Query(None, description="Comma-separated stock symbols"),
     topics: str = Query(None, description="Comma-separated news topics"),
-    limit: int = Query(50, description="Number of news items to return")
+    limit: int = Query(5, description="Number of news items to return")
 ):
     """Get news sentiment for stocks"""
     try:
