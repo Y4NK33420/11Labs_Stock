@@ -94,7 +94,7 @@ A FastAPI-based REST API for fetching stock market data, news, and performing ma
    uvicorn main:app --reload
    ```
 
-3. Access the API documentation:
+3. Access the API documentation :
    ```
    http://localhost:3000/docs
    ```
